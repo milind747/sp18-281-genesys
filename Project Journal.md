@@ -32,3 +32,19 @@ Engineering building
 * Brainstorm and come up with project domain to be implemented
 * Try to configure mongodb in with AP properties of NOSQL database
 
+
+## Team Genesys Meeting 2:
+
+# Meeting Location
+Engineering building
+
+# Key Discussion Points
+* Discussed about Modified project deliverables as per requirements
+* Discussed about generalized code to be implemented
+
+# Actions to be taken
+* Try to configure mongodb in with AP properties of NOSQL database
+* Hands on with RIAK 
+* Code generalize API for DB connection
+
+
