@@ -128,7 +128,7 @@
 								<i class="flaticon-car"></i>
 							</span>
 							<h3>Connect to Taxi service</h3>
-							<p>Payment to Uber with the help of Clipper Card</p>
+							<a id="texiservice"><p>Payment to Uber with the help of Clipper Card</p></a>
 						</div>
 					</div>
 					<div class="col-md-4 animate-box text-center">
@@ -313,7 +313,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<!-- Main -->
 	<script src="js/main.js"></script>
-
+	
+	<script>
+        $("#texiservice").click(function(event){
+            window.location = "/texiservice";
+		});
+		</script>
 	</body>
 </html>
 
