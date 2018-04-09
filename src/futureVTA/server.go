@@ -30,8 +30,8 @@ func NewServer() *negroni.Negroni {
 
 // API Routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
-	mx.HandleFunc("/generate",gumballOrderStatusHandler(formatter)).Methods("GET")
-	mx.HandleFunc("/scanned", gumballProcessOrdersHandler(formatter)).Methods("POST")
+	mx.HandleFunc("/generate",generateQRCode(formatter)).Methods("GET")
+	mx.HandleFunc("/scanned", postScannedQRCode Detail(formatter)).Methods("POST")
 }
 
 // Helper Functions
@@ -41,6 +41,5 @@ func failOnError(err error, msg string) {
 		panic(fmt.Sprintf("%s: %s", msg, err))
 	}
 }
-
 
 
