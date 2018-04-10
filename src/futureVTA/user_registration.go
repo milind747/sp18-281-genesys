@@ -20,3 +20,15 @@ var mongodb_database = "clipper"
 var mongodb_collection = "login"
 
 
+// NewServer configures and returns a Server.
+func NewServer() *negroni.Negroni {
+        formatter := render.New(render.Options{
+                IndentJSON: true,
+        })
+        n := negroni.Classic()
+        mx := mux.NewRouter()
+        initRoutes(mx, formatter)
+        n.UseHandler(mx)
+        return n
+}
+
