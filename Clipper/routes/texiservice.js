@@ -6,6 +6,8 @@ var ejs = require("ejs");
 router.get('/', function(req, res) {
   console.log("Inside the texiservice");
 
+  console.log("req.query.No:"+req.query.No)
+
   ejs.renderFile('./views/contact.ejs',{data:req.query.No},function(err,result){
     if (!err) {
      

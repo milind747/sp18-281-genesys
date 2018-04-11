@@ -108,44 +108,37 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 animate-box">
-						<h3>Get In Touch</h3>
-						<form action="#">
+						<h3>Enter the Details</h3>
+						
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
-									<label for="fname">First Name</label>
+									<label for="fname">User Id</label>
 									<input type="text" id="fname" class="form-control" placeholder="Your firstname">
 								</div>
 								<div class="col-md-6">
-									<label for="lname">Last Name</label>
+									<label for="lname">Clipper Card No</label>
 									<input type="text" id="lname" class="form-control" placeholder="Your lastname">
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="email">Email</label>
+									<label for="email">Uber User Name</label>
 									<input type="text" id="email" class="form-control" placeholder="Your email address">
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="subject">Subject</label>
+									<label for="subject">Password</label>
 									<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
 								</div>
 							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="message">Message</label>
-									<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
-								</div>
-							</div>
-							<div class="form-group text-center">
-								<input type="submit" value="Send Message" class="btn btn-primary">
+							<div class="form-group text-center" >
+								<input type="submit" value="Send Message" class="btn btn-primary" id ="update_view">
 							</div>
 
-						</form>		
+							
 					</div>
 					<div class="col-md-10 col-md-offset-1 animate-box">
 						<h3>Contact Information</h3>
@@ -168,6 +161,12 @@
 			</div>
 		</div>
 		<% } %>
+
+		<%if (data == "2") { %>
+			<div>
+				<h1>Jay</h1>
+			</div>
+			<% } %>
 
 		<div id="map" class="colorlib-map"></div>
 	
@@ -300,7 +299,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         $("#update").click(function(event){
             window.location = "/texiservice?No="+"1";
 		});
+
+		 $("#update_view").click(function(event){
+            window.location = "/texiservice?No="+"2";
+		});
 		</script>
+
+		
 
 	</body>
 </html>
