@@ -32,7 +32,7 @@ else if(req.query.No == "2"){
     axios.post('http://localhost:3001/getUserData',payload)
         .then(function(response){
             console.log("response.data"+response.data)
-            ejs.renderFile('./views/contact.ejs',{data:req.query.No},function(err,result){
+            ejs.renderFile('./views/contact.ejs',{data:req.query.No,details:response.data},function(err,result){
             if (!err) {
                     res.status(200).send(result);
                     }
