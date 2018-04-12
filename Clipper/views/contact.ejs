@@ -194,7 +194,45 @@
 
 		<%if (data == "2") { %>
 			<div id="colorlib-about">
-					
+					<div class="container">
+							<div class="row">
+									<div class="col-md-12">
+										<div class="wrap-division">
+											<div class="col-md-12 col-md-offset-0 heading2 animate-box">
+												<h2 align="center">User Details</h2>
+											</div>
+											<div class="row">
+												<div class="col-md-12 animate-box">
+													<div class="room-wrap">
+														<div class="row">
+															<div class="col-md-6 col-sm-3">
+																	<h2 align="center"> User Details</h2>
+															</div>
+															<div class="col-md-6 col-sm-9">
+																<div class="desc">
+																	<h2>Clipper Card Number</h2>
+																	<p><%= details.Accounts[0].clippercarnumber %></p>
+																</div>
+																<div class="desc">
+																		<h2>User Name</h2>
+																		<p><%= details.Accounts[0].username %></p>
+																</div>
+																<div class="desc">
+																			<h2>Password</h2>
+																			<p><%= details.Accounts[0].password %></p>
+																</div>	
+															</div>
+														</div>
+													</div>
+												</div>
+		
+												
+		
+												
+											</div>
+										</div>
+									</div>
+					</div>
 				</div>
 			<% } %>
 
