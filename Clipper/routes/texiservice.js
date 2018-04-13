@@ -23,6 +23,13 @@ router.get('/', function(req, res) {
 else if(req.query.No == "2"){
 
     // API Call for the get user info 
+    console.log("req.query.userid:"+req.query.userid)
+    console.log("req.query.clippercard:"+req.query.clippercard)
+    console.log("req.query.username:"+req.query.username)
+    console.log("req.query.password:"+req.query.password)
+    
+    
+    
 
     var payload = {
         "Id": 5,
@@ -44,3 +51,6 @@ else if(req.query.No == "2"){
 });
 
 module.exports = router;
+
+
+//window.location = "/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value;

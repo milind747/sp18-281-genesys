@@ -143,25 +143,25 @@
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">User Id</label>
-									<input type="text" id="fname" class="form-control" placeholder="Your firstname">
+									<input type="text" id="userid" class="form-control" placeholder="Your firstname">
 								</div>
 								<div class="col-md-6">
 									<label for="lname">Clipper Card No</label>
-									<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+									<input type="text" id="clippercard" class="form-control" placeholder="Your lastname">
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="email">Uber User Name</label>
-									<input type="text" id="email" class="form-control" placeholder="Your email address">
+									<input type="text" id="username" class="form-control" placeholder="Your email address">
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">Password</label>
-									<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+									<input type="text" id="password" class="form-control" placeholder="Your subject of this message">
 								</div>
 							</div>
 							<div class="form-group text-center" >
@@ -351,6 +351,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<script>
         $("#update").click(function(event){
@@ -358,7 +359,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 
 		 $("#update_view").click(function(event){
-            window.location = "/texiservice?No="+"2";
+			 //console.log("jay desai");
+			 console.log("/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value);
+
+			 window.location = "/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value;
 		});
 		</script>
 
