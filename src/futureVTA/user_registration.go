@@ -66,7 +66,17 @@ func write(formatter *render.Render) http.HandlerFunc {
 //               _, err = collection.Upsert(query, change)
 //              query := bson.M{"username":"Neha1","password":"123"}
                 err = collection.Find(bson.M{"username": user["username"],"password":user["password"]}).One(&result)
-                
+                if err!=nil{
+                        if err==mgo.ErrNotFound{
+                                        err = collection.Insert(user)
+                                        if err != nil {
+                                            fmt.Println("Cannot Signup")
+                                           log.Fatal(err)
+                                        }else{
+                                                fmt.Println("Signed Up")
+                                        }
+                        }
+                }
 				if result != nil {
                                 fmt.Println("Cannot Signup. User already exists")
 				}
