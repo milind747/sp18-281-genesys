@@ -28,3 +28,19 @@ type QRCodeUse struct {
 	TIME time.Time `bson:"time" json:"time"`
 }
 
+
+func checkIfQRCodeGenerated(uid string,parentid string,result *QRCodeStruct){
+	database := Database{hostname, databaseName, nil}
+	Connect(&database);
+	qrdataC :=  (&database).db.C("qrcode")
+
+	current := time.Now()
+	twoHourBack := current.Add(time.Hour * -2)
+	
+	query := bson.M{"uid": uid, "parentid":parentid,"time":bson.M{"$gte":twoHourBack}}
+	//result1 := QRCodeStruct{}
+	err := qrdataC.Find(query).One(result)
+	if(err!=nil){
+		log.Println(err)
+	}
+}
