@@ -34,20 +34,30 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	c := data.db.C("payment")
 	
 	//need parent id for my api which i took from query string
-	var p Payment
+	var p []bson.M //payment struct not getting the code so changing to bson.m 
 	i, err := strconv.Atoi(req.FormValue("parentid"))
-	err = c.Find(bson.M{"id":i}).One(&p)
+	err = c.Find(bson.M{"id":i}).All(&p) // one not showing the result so writing all for getting data in bson.M
+	
+	if err==nil{
+	
+	//handle error	
 
+	} else {
+	
+	//handle error
+
+	}
+	//below code does not give output in struct as needed	
 	//for unmarshalling data into JSON format and storing in struct	
-	data1, err := json.Marshal(req.Form)
-    	if err != nil {
-         Handle error
-    	}
-    	var user User
-    	if err = json.Unmarshal(data1, user); err != nil {
-         Handle error
-    	}
-   	fmt.Printf("%+v", user)
+	//data1, err := json.Marshal(req.Form)
+    	//if err != nil {
+         //Handle error
+    	//}
+    	//var user User
+    	//if err = json.Unmarshal(data1, user); err != nil {
+        // Handle error
+    	//}
+   	//fmt.Printf("%+v", user)
 
 	}
 }
