@@ -1,11 +1,14 @@
+package main
+
 import(
 	mgo "gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
+	"log"
+	
 )
 
 // struct to define the Database fields
-type QRDatabase struct {
-	Server   string
+type Database struct {
+	host   string
 	Database string
 	db *mgo.Database
 }
@@ -13,8 +16,8 @@ type QRDatabase struct {
 //database object to be returned
 var db *mgo.Database
 
-func (m *QRDatabase) Connect() {
-	session, err := mgo.Dial(m.Server)
+func Connect(m *Database) {
+	session, err := mgo.Dial(m.host)
 	if err != nil {
 		log.Fatal(err)
 	}
