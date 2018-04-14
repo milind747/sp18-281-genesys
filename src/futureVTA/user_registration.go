@@ -32,3 +32,9 @@ func NewServer() *negroni.Negroni {
         return n
 }
 
+// API Ping Handler
+func pingHandler(formatter *render.Render) http.HandlerFunc {
+        return func(w http.ResponseWriter, req *http.Request) {
+                formatter.JSON(w, http.StatusOK, struct{ Test string }{"API login alive!"})
+        }
+}
