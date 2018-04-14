@@ -14,6 +14,11 @@ import (
 	
 )
 
+type Payment struct {
+	id int `bson:"id" json:"id"`
+	amount int  `bson:"amount" json:"amount"`
+}
+
 func newParent(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
 
@@ -32,6 +37,17 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	var p Payment
 	i, err := strconv.Atoi(req.FormValue("parentid"))
 	err = c.Find(bson.M{"id":i}).One(&p)
+
+	//for unmarshalling data into JSON format and storing in struct	
+	data1, err := json.Marshal(req.Form)
+    	if err != nil {
+         Handle error
+    	}
+    	var user User
+    	if err = json.Unmarshal(data1, user); err != nil {
+         Handle error
+    	}
+   	fmt.Printf("%+v", user)
 
 	}
 }
