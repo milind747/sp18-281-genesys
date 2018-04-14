@@ -38,3 +38,39 @@ func pingHandler(formatter *render.Render) http.HandlerFunc {
                 formatter.JSON(w, http.StatusOK, struct{ Test string }{"API login alive!"})
         }
 }
+
+// Signup API
+func write(formatter *render.Render) http.HandlerFunc {
+        return func(w http.ResponseWriter, req *http.Request) {
+                // queue_send(uuid.String())
+                session, collection, err := getMongoConnection()
+        if err != nil {
+                panic(err)
+        }
+                defer session.Close()
+                fmt.Println("Signup :" )
+//              uuid := uuid.NewV4()
+//              fmt.Println(uuid.String())
+                fmt.Println(req.Body)
+
+//              var user User
+                var user bson.M
+                var result bson.M
+                _ = json.NewDecoder(req.Body).Decode(&user)
+                fmt.Println("User data:", user )
+//              user.Id = bson.NewObjectId()
+//              var counter = 100
+//              var result bson.M
+//              query := bson.M{"_id": bson.ObjectIdHex("5ad657af38a068950fba94a3")}
+//              change := bson.M{"id": "nehaj2"}
+//               _, err = collection.Upsert(query, change)
+//              query := bson.M{"username":"Neha1","password":"123"}
+                err = collection.Find(bson.M{"username": user["username"],"password":user["password"]}).One(&result)
+                
+				if result != nil {
+                                fmt.Println("Cannot Signup. User already exists")
+				}
+                formatter.JSON(w, http.StatusOK, user)
+        }
+        }
+
