@@ -84,3 +84,19 @@ func write(formatter *render.Render) http.HandlerFunc {
         }
         }
 
+// LOGIN API
+func login(formatter *render.Render) http.HandlerFunc{
+        return func(w http.ResponseWriter, req *http.Request){
+                session, collection, err := getMongoConnection()
+        if err != nil {
+                panic(err)
+        }
+                defer session.Close()
+                fmt.Println("Login :" )
+                fmt.Println(req.Body)
+                var result bson.M
+
+                fmt.Println("Response",result)
+                formatter.JSON(w, http.StatusOK, result)
+        }
+        }
