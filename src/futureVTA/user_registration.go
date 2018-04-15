@@ -96,6 +96,21 @@ func login(formatter *render.Render) http.HandlerFunc{
                 fmt.Println(req.Body)
                 var result bson.M
 
+//              var user User
+                var user bson.M
+                _ = json.NewDecoder(req.Body).Decode(&user)
+                fmt.Println("User data in login:", user )
+               err = collection.Find(bson.M{"username": user["username"],"password":user["password"]}).One(&result)
+//               err = collection.Find(bson.M{"username":"neha").One(&result)
+                if err != nil {
+
+                                fmt.Println("Inside login error")
+                        if err==mgo.ErrNotFound{
+                                fmt.Println("Invalid Username/Password")
+}else{
+        log.Fatal(err)
+}          
+       }
                 fmt.Println("Response",result)
                 formatter.JSON(w, http.StatusOK, result)
         }
