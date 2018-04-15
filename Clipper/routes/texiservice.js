@@ -28,7 +28,7 @@ else if(req.query.No == "2"){
     console.log("req.query.username:"+req.query.username)
     console.log("req.query.password:"+req.query.password)
     
-    
+    if (req.query.direct != "T"){
     var user_details = {
         "Id": 11,
         "Accounts":{
@@ -62,6 +62,28 @@ else if(req.query.No == "2"){
         
         })
             })
+
+        }
+
+        else{
+            var payload = {
+                "Id": 11,
+                "Accountstype":"Uber",
+                "Clippercarnumber":parseInt(178)
+            }
+            axios.post('http://localhost:3001/getUserData',payload)
+                .then(function(response){
+                    console.log("response.data"+response.data)
+                    ejs.renderFile('./views/contact.ejs',{data:req.query.No,details:response.data},function(err,result){
+                    if (!err) {
+                            res.status(200).send(result);
+                            }
+            
+          });
+        
+        })
+
+        }
 
     
   }

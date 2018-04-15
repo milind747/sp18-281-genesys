@@ -109,7 +109,7 @@
 									<i class="flaticon-around"></i>
 								</span>
 								<h3>Get the Details</h3>
-								<p>Get the Account Details</p>
+								<a id="get_the_details"><p>Get the Account Details</p></a>
 							</div>
 						</div>
 						<div class="col-md-3 animate-box text-center">
@@ -170,23 +170,7 @@
 
 							
 					</div>
-					<div class="col-md-10 col-md-offset-1 animate-box">
-						<h3>Contact Information</h3>
-						<div class="row contact-info-wrap">
-							<div class="col-md-3">
-								<p><span><i class="icon-location"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
-							</div>
-							<div class="col-md-3">
-								<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-							</div>
-							<div class="col-md-3">
-								<p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-							</div>
-							<div class="col-md-3">
-								<p><span><i class="icon-globe"></i></span> <a href="#">yoursite.com</a></p>
-							</div>
-						</div>
-					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -360,10 +344,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 		 $("#update_view").click(function(event){
 			 //console.log("jay desai");
-			 console.log("/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value);
+			// console.log("/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value);
 
 			 window.location = "/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value;
 		});
+
+		$("#get_the_details").click(function(event){
+			 //console.log("jay desai");
+			 //console.log("/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value);
+
+			 window.location = "/texiservice?No="+"2&direct="+"T";
+		});
+		
 		</script>
 
 		
