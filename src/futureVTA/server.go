@@ -37,6 +37,10 @@ func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/updatePAmount",updateBal(formatter)).Methods("POST")
 	mx.HandleFunc("/addAmount",addBal(formatter)).Methods("POST")
 	mx.HandleFunc("/usageHistory",userHistory(formatter)).Methods("GET")
+	mx.HandleFunc("/ping", pingHandler(formatter)).Methods("GET")
+	mx.HandleFunc("/read", read(formatter)).Methods("GET")
+	mx.HandleFunc("/signup", write(formatter)).Methods("POST")
+    mx.HandleFunc("/login", login(formatter)).Methods("POST")
 }
 
 // Helper Functions
