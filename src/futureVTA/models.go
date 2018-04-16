@@ -19,3 +19,16 @@ func init(){
 }
 
 
+func GetMongoSession() *mgo.Session {
+        if MongoSession == nil {
+                var err error
+                MongoSession, err = mgo.DialWithTimeout(mongodb_server, 5 * time.Second)
+                if err != nil {
+                        fmt.Println("mongodb connection failed: ", err)
+                        panic("mongodb connection failed:")
+                }
+                MongoSession.SetMode(mgo.Monotonic, true)
+                fmt.Println("New Mongo Session Created")
+        }
+        return MongoSession.Clone()
+}
