@@ -38,14 +38,20 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	var p Payment 
 	i, err := strconv.Atoi(req.FormValue("parentid"))
 	err = c.Find(bson.M{"id":i}).One(&p) 
-		formatter.JSON(w, http.StatusOK, p) //for checking expected output with curl
+		 
 	if err==nil{
-	fmt.Println("Already present in db")
-	//handle error	
+		//handle error
+		fmt.Println("Already present in db")
+		formatter.JSON(w, http.StatusOK, false)	
+			
 
 	} else {
 	
-	//handle error
+		//handle error
+		p := c.Insert(bson.M{"id":i,"amount":0})
+		d.Insert(bson.M{"id":i,"tamt":0,"bal":0,"timestamp":time.Now()})
+		fmt.Println("output:", p)
+		formatter.JSON(w, http.StatusOK, true)
 
 	}
 	//below code does not give output in struct as needed	
