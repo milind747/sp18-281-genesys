@@ -68,3 +68,10 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 
 	}
 }
+
+//function to read Balance of the parent user
+func readBal(formatter *render.Render) http.HandlerFunc{
+	return func(w http.ResponseWriter, req *http.Request) {
+
+	}
+}
