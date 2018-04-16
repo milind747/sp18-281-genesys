@@ -32,6 +32,8 @@ func NewServer() *negroni.Negroni {
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/generate",generateQRCode(formatter)).Methods("GET")
 	mx.HandleFunc("/scanned", postScannedQRCode Detail(formatter)).Methods("POST")
+	mx.HandleFunc("/newParent",newParent(formatter)).Methods("POST")
+	mx.HandleFunc("/getPAmount",readBal(formatter)).Methods("GET")
 }
 
 // Helper Functions
