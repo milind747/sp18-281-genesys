@@ -15,6 +15,7 @@ import (
 )
 
 type Payment struct {
+	_id bson.ObjectId `bson:"_id" json:"_id"`
 	id int `bson:"id" json:"id"`
 	amount int  `bson:"amount" json:"amount"`
 }
@@ -34,12 +35,12 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	c := data.db.C("payment")
 	
 	//need parent id for my api which i took from query string
-	var p []bson.M //payment struct not getting the code so changing to bson.m 
+	var p Payment 
 	i, err := strconv.Atoi(req.FormValue("parentid"))
-	err = c.Find(bson.M{"id":i}).All(&p) // one not showing the result so writing all for getting data in bson.M
-	
+	err = c.Find(bson.M{"id":i}).One(&p) 
+		formatter.JSON(w, http.StatusOK, p) //for checking expected output with curl
 	if err==nil{
-	
+	fmt.Println("Already present in db")
 	//handle error	
 
 	} else {
