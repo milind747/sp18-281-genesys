@@ -47,4 +47,18 @@ Engineering building
 * Hands on with RIAK 
 * Code generalize API for DB connection
 
+## Week 3 :
 
+#Meeting location:
+Engineering building
+
+# Key Tasks: 
+This week we decided to work on the GO API and Data services part.
+
+# Challanges: 
+   * Implement GO APIs.
+   * Integrate the developed GO API with the No SQL personal project database(MongoDB).
+   * Test the GO APIs with the help of Postman.
+   * Deploy the GO API in AWS setup.
+   * Test the AWS setup which has now 6 running instances.
+   * Test the system in normal as well as partition mode. 
