@@ -12,7 +12,8 @@ import (
 
 	)
 
-
+var hostname string = "localhost"
+var databaseName string = "cmpe281"
 
 type QRCodeStruct struct {
 	ID     bson.ObjectId `json:"_id" bson:"_id"`
