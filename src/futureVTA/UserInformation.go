@@ -18,3 +18,15 @@ type UserDetails struct {
 	EMAIL		string		`bson:"email" json:"email"`
 }
 
+
+func getUserInfo(formatter *render.Render) http.HandlerFunc{
+	return func(w http.ResponseWriter, req *http.Request) {
+
+		database := Database{"localhost", "cmpe281", nil}
+		data := &database
+		Connect(data)
+		c := data.db.C("users")
+
+		}
+}
+
