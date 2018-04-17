@@ -87,6 +87,16 @@ else if(req.query.No == "2"){
 
     
   }
+
+  else if(req.query.No == "3"){
+    ejs.renderFile('./views/contact.ejs',{data:req.query.No},function(err,result){
+      if (!err) {
+       
+          res.status(200).send(result);
+      }
+    
+  });
+  }
 });
 
 module.exports = router;

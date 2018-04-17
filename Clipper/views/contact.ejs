@@ -118,7 +118,7 @@
 									<i class="flaticon-car"></i>
 								</span>
 								<h3>Ride Now!</h3>
-								<p>Book the UBER Now!</p>
+								<a id="ride_now"><p>Book the UBER Now!</p></a>
 							</div>
 						</div>
 						<div class="col-md-3 animate-box text-center">
@@ -219,7 +219,45 @@
 					</div>
 				</div>
 			<% } %>
+			<%if (data == "3") { %>
+				<div class="colorlib-wrap">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="wrap-division">
+											<div class="col-md-12 col-md-offset-0 heading2 animate-box">
+												<h2>Ride the UBER</h2>
+											</div>
+											<div class="row">
+												<div class="col-md-12 animate-box">
+													<div class="room-wrap">
+														<div class="row">
+															<div class="col-md-6 col-sm-6">
+																<div class="room-img" style="background-image: url(images/ride.png);"></div>
+															</div>
+															<div class="col-md-6 col-sm-6">
+																<div class="desc">
+																	<h2>Uber Ride</h2>
+																	<p class="price"><span>$07</span> <small>/ ride</small></p>
+																	<p>Get the smooth, top class ride with UBER</p>
+																	<p><a class="btn btn-primary">Book Now!</a></p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
+			<% } %>
 	
 		<div id="colorlib-subscribe" style="background-image: url(images/uber.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -354,6 +392,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			 //console.log("/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value);
 
 			 window.location = "/texiservice?No="+"2&direct="+"T";
+		});
+
+		$("#ride_now").click(function(event){
+            window.location = "/texiservice?No="+"3";
 		});
 		
 		</script>
