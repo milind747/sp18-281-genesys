@@ -97,3 +97,10 @@ func readBal(formatter *render.Render) http.HandlerFunc{
 		formatter.JSON(w, http.StatusOK, result)
 	}
 }
+
+//function to update balance when user performs transaction
+func updateBal(formatter *render.Render) http.HandlerFunc{
+	return func(w http.ResponseWriter, req *http.Request) {
+
+	}
+}
