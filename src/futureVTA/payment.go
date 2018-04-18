@@ -72,6 +72,28 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 //function to read Balance of the parent user
 func readBal(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
+		req.ParseForm()
+	var user User
+	_ = json.NewDecoder(req.Body).Decode(&user)
 
+	database := Database{"localhost", "cmpe281", nil}
+	data := &database
+	Connect(data)
+	c := data.db.C("payment")
+	fmt.Println("collection:", c)
+        var result Payment
+	i, err := strconv.Atoi(req.FormValue("parentid"))
+	//fmt.Println("USER.PARENTID:", i)
+	//var re = Payment{}
+        err = c.Find(bson.M{"id":i}).One(&result)
+        if err != nil {
+		log.Fatal("ERRRORR")
+                log.Fatal(err)
+		//x := c.Insert(bson.M{"id":i,"amount":0})
+	//if x != nil {
+		//panic(err)
+	}
+	fmt.Println("Amount:", result)
+		formatter.JSON(w, http.StatusOK, result)
 	}
 }
