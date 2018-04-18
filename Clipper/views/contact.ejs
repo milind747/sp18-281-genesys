@@ -219,7 +219,26 @@
 					</div>
 				</div>
 			<% } %>
+			<%if (data_int == "3_D") { %>
+				
+				<div id="colorlib-testimony" class="colorlib-light-grey">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6 col-md-offset-3 text-center colorlib-heading animate-box">
+								<h2>Thanks for riding with US!!!</h2>
+			
+							</div>
+						</div>
+					</div>
+				</div>	
+										
+									
+								
+							
+				<% } %>
 			<%if (data == "3") { %>
+				
+
 				<div class="colorlib-wrap">
 					<div class="container">
 						<div class="row">
@@ -242,7 +261,7 @@
 																	<h2>Uber Ride</h2>
 																	<p class="price"><span>$07</span> <small>/ ride</small></p>
 																	<p>Get the smooth, top class ride with UBER</p>
-																	<p><a class="btn btn-primary">Book Now!</a></p>
+																	<p><a id="ride_inc"class="btn btn-primary">Book Now!</a></p>
 																</div>
 															</div>
 														</div>
@@ -258,6 +277,8 @@
 				</div>
 
 			<% } %>
+
+		
 	
 		<div id="colorlib-subscribe" style="background-image: url(images/uber.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -396,6 +417,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 		$("#ride_now").click(function(event){
             window.location = "/texiservice?No="+"3";
+		});
+		
+
+		$("#ride_inc").click(function(event){
+            window.location = "/texiservice?No="+"3&data_int=3_D";
 		});
 		
 		</script>

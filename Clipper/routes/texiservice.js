@@ -88,7 +88,28 @@ else if(req.query.No == "2"){
     
   }
 
-  else if(req.query.No == "3"){
+    else if(req.query.No == "3" && req.query.data_int=="3_D"){
+        console.log("Inside 3_D")
+    var payload = {
+        "Id": 11,
+        "Accountstype":"Uber",
+        "Payment":parseInt(101)
+    }
+
+    axios.post('http://localhost:3001/updateRides',payload)
+                .then(function(response){
+                    console.log("response.data"+response.data)
+                    ejs.renderFile('./views/contact.ejs',{data:req.query.No,data_int:req.query.data_int},function(err,result){
+                    if (!err) {
+                            res.status(200).send(result);
+                            }
+            
+          });
+        
+        })
+  }
+
+  else if(req.query.No == "3" ){
     ejs.renderFile('./views/contact.ejs',{data:req.query.No},function(err,result){
       if (!err) {
        
