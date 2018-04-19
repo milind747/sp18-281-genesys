@@ -115,3 +115,17 @@ func login(formatter *render.Render) http.HandlerFunc{
                 formatter.JSON(w, http.StatusOK, result)
         }
         }
+
+// change password API
+func changepwd(formatter *render.Render) http.HandlerFunc{
+        return func(w http.ResponseWriter, req *http.Request){
+                session, collection, err := getMongoConnection()
+                if err != nil {
+                        panic(err)
+                }
+
+                defer session.Close()
+                fmt.Println("change password :" )
+                fmt.Println(req.Body)
+                
+        }
