@@ -101,6 +101,21 @@ func readBal(formatter *render.Render) http.HandlerFunc{
 //function to update balance when user performs transaction
 func updateBal(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
+		
+	req.ParseForm()
+	var user User
+	_ = json.NewDecoder(req.Body).Decode(&user)
+	database := Database{"localhost", "cmpe281", nil}
+	data := &database
+	Connect(data)
+	c := data.db.C("payment")
+	var p Payment
+	i, err := strconv.Atoi(req.FormValue("parentid")) // converting string to int
+	err = c.Find(bson.M{"id":i}).One(&p) //fetching user details from db
+        if err != nil {
+		log.Fatal("ERRRORR")
+                log.Fatal(err)
+        }	
 
 	}
 }
