@@ -127,5 +127,22 @@ func changepwd(formatter *render.Render) http.HandlerFunc{
                 defer session.Close()
                 fmt.Println("change password :" )
                 fmt.Println(req.Body)
-                
+                var result bson.M
+
+                var user bson.M
+                _ = json.NewDecoder(req.Body).Decode(&user)
+                fmt.Println("User data in change password:", user )
+                query := bson.M{"username":user["username"]}
+                change := bson.M{"$set": bson.M{ "password" : user["password"]}}
+
+                err = collection.Update(query, change)
+
+                if err != nil {
+                        fmt.Println("Error in change password")
+                        log.Fatal(err)
+                }
+                err = collection.Find(bson.M{"username": user["username"],"password":user["password"]}).One(&result)
+
+                fmt.Println("Response",result)
+                formatter.JSON(w, http.StatusOK, result)
         }
