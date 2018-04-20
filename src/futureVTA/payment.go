@@ -131,3 +131,10 @@ func updateBal(formatter *render.Render) http.HandlerFunc{
 
 	}
 }
+
+// function to add money to user's account
+func addBal(formatter *render.Render) http.HandlerFunc{
+	return func(w http.ResponseWriter, req *http.Request) {
+
+	}
+}
