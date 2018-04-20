@@ -116,6 +116,18 @@ func updateBal(formatter *render.Render) http.HandlerFunc{
 		log.Fatal("ERRRORR")
                 log.Fatal(err)
         }	
+	
+	//code for updating amount on successfull transaction
+	if p.AMOUNT>=2 {
+		p.AMOUNT -=2
+		c.Upsert(bson.M{"id": p.ID},bson.M{"$set": bson.M{"amount": p.AMOUNT}})
+		d.Insert(bson.M{"id":p.ID,"tamt":2,"bal":p.AMOUNT,"timestamp":time.Now()})
+		fmt.Println("Amount:", p)	
+			formatter.JSON(w, http.StatusOK, true)
+	} else {
+		fmt.Println("Not sufficient Balance")
+		formatter.JSON(w, http.StatusOK, false)
+	}
 
 	}
 }
