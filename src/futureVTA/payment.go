@@ -135,6 +135,26 @@ func updateBal(formatter *render.Render) http.HandlerFunc{
 // function to add money to user's account
 func addBal(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
+		
+	req.ParseForm()
+	var user User
+	_ = json.NewDecoder(req.Body).Decode(&user)
+	database := Database{"localhost", "cmpe281", nil}
+	data := &database
+	Connect(data)
+	c := data.db.C("payment")
 
+	var p Payment
+	i, err := strconv.Atoi(req.FormValue("parentid"))
+	amt,err := strconv.Atoi(req.FormValue("amt"))
+	err = c.Find(bson.M{"id":i}).One(&p)
+        if err != nil {
+		fmt.Println("No id found")
+		//log.Fatal("ERRRORR")
+                //log.Fatal(err)
+        } else {
+	
+		//logic for adding balance	
+	
 	}
 }
