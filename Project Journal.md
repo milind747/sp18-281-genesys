@@ -62,3 +62,14 @@ This week we decided to work on the GO API and Data services part.
    * Deploy the GO API in AWS setup.
    * Test the AWS setup which has now 6 running instances.
    * Test the system in normal as well as partition mode. 
+
+# Week 4 :
+
+## Key Tasks: 
+Develope the Node application and integrate with the GO API. 
+## Challanges: 
+    * Develop the Node application.
+    * Decide the npm packages for Network requests to be used for Node Application.
+    * Check the feasibility on Heroku.
+    * Integrate the Node application with the GO API.
+    * Test the end to end flow
