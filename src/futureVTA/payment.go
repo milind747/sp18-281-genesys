@@ -20,6 +20,15 @@ type Payment struct {
 	amount int  `bson:"amount" json:"amount"`
 }
 
+type History struct {
+	_id bson.ObjectId `bson:"_id" json:"_id"`
+	ID int `bson:"id" json:"id"`
+	TAMT int `bson:"tamt" json:"tamt"`
+	BAL int  `bson:"bal" json:"bal"`
+	TIMESTAMP time.Time `bson:"timestamp" json:"timestamp"`
+}
+
+
 func newParent(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
 
@@ -167,5 +176,14 @@ func addBal(formatter *render.Render) http.HandlerFunc{
 		formatter.JSON(w, http.StatusOK, false)
 	}
 	
+	}
+}
+
+//function to get user transaction history
+func userHistory(formatter *render.Render) http.HandlerFunc{
+	return func(w http.ResponseWriter, req *http.Request) {
+
+	
+
 	}
 }
