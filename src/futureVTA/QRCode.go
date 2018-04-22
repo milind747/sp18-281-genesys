@@ -78,6 +78,33 @@ func generateQRCode(formatter *render.Render) http.HandlerFunc{
 }
 
 
+func getQRCodeUseHistory(formatter *render.Render) http.HandlerFunc{
+	return func(w http.ResponseWriter, req *http.Request) {
+
+		err := req.ParseForm();
+		if  err != nil {
+		        log.Fatal("form")
+		        log.Fatal(err)
+		}
+
+		user := new(User)
+		user.UID = req.FormValue("uid")
+		user.PARENTID = req.FormValue("parentid")
+		database := Database{hostname, databaseName, nil}
+
+		Connect(&database);
+		qrdataC :=  (&database).db.C("qrcode")
+		var result []QRCodeStruct
+
+		err = qrdataC.Find(bson.M{"uid": user.UID, "parentid":user.PARENTID}).All(&result)
+		if(err != nil){
+			log.Fatal(err)
+		}
+		formatter.JSON(w, http.StatusOK, result)
+	}
+}
+
+
 func checkIfQRCodeGenerated(uid string,parentid string,result *QRCodeStruct){
 	database := Database{hostname, databaseName, nil}
 	Connect(&database);
