@@ -49,7 +49,7 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	
 		//handle error
 		p := c.Insert(bson.M{"id":i,"amount":0})
-		d.Insert(bson.M{"id":i,"tamt":0,"bal":0,"timestamp":time.Now()})
+		//d.Insert(bson.M{"id":i,"tamt":0,"bal":0,"timestamp":time.Now()})
 		fmt.Println("output:", p)
 		formatter.JSON(w, http.StatusOK, true)
 
@@ -121,7 +121,7 @@ func updateBal(formatter *render.Render) http.HandlerFunc{
 	if p.AMOUNT>=2 {
 		p.AMOUNT -=2
 		c.Upsert(bson.M{"id": p.ID},bson.M{"$set": bson.M{"amount": p.AMOUNT}})
-		d.Insert(bson.M{"id":p.ID,"tamt":2,"bal":p.AMOUNT,"timestamp":time.Now()})
+		//d.Insert(bson.M{"id":p.ID,"tamt":2,"bal":p.AMOUNT,"timestamp":time.Now()})
 		fmt.Println("Amount:", p)	
 			formatter.JSON(w, http.StatusOK, true)
 	} else {
@@ -155,6 +155,17 @@ func addBal(formatter *render.Render) http.HandlerFunc{
         } else {
 	
 		//logic for adding balance	
+
+		if amt>=0 {
+		p.AMOUNT +=amt
+		c.Upsert(bson.M{"id": p.ID},bson.M{"$set": bson.M{"amount": p.AMOUNT}})
+		
+		fmt.Println("Amount:", p)	
+			formatter.JSON(w, http.StatusOK, true)
+	} else {
+		fmt.Println("Nothing added")
+		formatter.JSON(w, http.StatusOK, false)
+	}
 	
 	}
 }
