@@ -191,6 +191,16 @@ func userHistory(formatter *render.Render) http.HandlerFunc{
 	Connect(data)
 	//c := data.db.C("payment")
 	d := data.db.C("history")
+	var p []bson.M
+	i, err := strconv.Atoi(req.FormValue("parentid"))
+	err = d.Find(bson.M{"id":i}).All(&p)
+        if err != nil {
+		log.Fatal("ERRRORR")
+                log.Fatal(err)
+        } else {
+		fmt.Println("History found!")
+		formatter.JSON(w, http.StatusOK, p)
+	}
 
 	}
 }
