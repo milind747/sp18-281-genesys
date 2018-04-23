@@ -42,7 +42,7 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	Connect(data)
 	//collection
 	c := data.db.C("payment")
-	
+	d := data.db.C("history")
 	//need parent id for my api which i took from query string
 	var p Payment 
 	i, err := strconv.Atoi(req.FormValue("parentid"))
@@ -58,7 +58,7 @@ func newParent(formatter *render.Render) http.HandlerFunc{
 	
 		//handle error
 		p := c.Insert(bson.M{"id":i,"amount":0})
-		//d.Insert(bson.M{"id":i,"tamt":0,"bal":0,"timestamp":time.Now()})
+		d.Insert(bson.M{"id":i,"tamt":0,"bal":0,"timestamp":time.Now()})
 		fmt.Println("output:", p)
 		formatter.JSON(w, http.StatusOK, true)
 
@@ -118,6 +118,7 @@ func updateBal(formatter *render.Render) http.HandlerFunc{
 	data := &database
 	Connect(data)
 	c := data.db.C("payment")
+	d := data.db.C("history")
 	var p Payment
 	i, err := strconv.Atoi(req.FormValue("parentid")) // converting string to int
 	err = c.Find(bson.M{"id":i}).One(&p) //fetching user details from db
@@ -130,7 +131,7 @@ func updateBal(formatter *render.Render) http.HandlerFunc{
 	if p.AMOUNT>=2 {
 		p.AMOUNT -=2
 		c.Upsert(bson.M{"id": p.ID},bson.M{"$set": bson.M{"amount": p.AMOUNT}})
-		//d.Insert(bson.M{"id":p.ID,"tamt":2,"bal":p.AMOUNT,"timestamp":time.Now()})
+		d.Insert(bson.M{"id":p.ID,"tamt":2,"bal":p.AMOUNT,"timestamp":time.Now()})
 		fmt.Println("Amount:", p)	
 			formatter.JSON(w, http.StatusOK, true)
 	} else {
@@ -152,7 +153,7 @@ func addBal(formatter *render.Render) http.HandlerFunc{
 	data := &database
 	Connect(data)
 	c := data.db.C("payment")
-
+	d := data.db.C("history")
 	var p Payment
 	i, err := strconv.Atoi(req.FormValue("parentid"))
 	amt,err := strconv.Atoi(req.FormValue("amt"))
@@ -168,7 +169,7 @@ func addBal(formatter *render.Render) http.HandlerFunc{
 		if amt>=0 {
 		p.AMOUNT +=amt
 		c.Upsert(bson.M{"id": p.ID},bson.M{"$set": bson.M{"amount": p.AMOUNT}})
-		
+		d.Insert(bson.M{"id":p.ID,"tamt":amt,"bal":p.AMOUNT,"timestamp":time.Now()})
 		fmt.Println("Amount:", p)	
 			formatter.JSON(w, http.StatusOK, true)
 	} else {
