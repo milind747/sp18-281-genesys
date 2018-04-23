@@ -183,7 +183,14 @@ func addBal(formatter *render.Render) http.HandlerFunc{
 func userHistory(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
 
-	
+	req.ParseForm()
+	var user User
+	_ = json.NewDecoder(req.Body).Decode(&user)
+	database := Database{"localhost", "cmpe281", nil}
+	data := &database
+	Connect(data)
+	//c := data.db.C("payment")
+	d := data.db.C("history")
 
 	}
 }
