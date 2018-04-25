@@ -25,8 +25,6 @@ func getUserInfo(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
 
 		err := req.ParseForm()	
-		var user User
-		_ = json.NewDecoder(req.Body).Decode(&user)
 		
 		database := Database{"localhost", "cmpe281", nil}
 		data := &database
@@ -38,11 +36,8 @@ func getUserInfo(formatter *render.Render) http.HandlerFunc{
 
 		u.UID = req.FormValue("uid")
 		u.USERNAME = req.FormValue("username")
-		//err = c.Find(bson.M{"uid":u.UID}).One(&u)
+		err = c.Find(bson.M{"uid":u.UID}).One(&u)
 
-		err2 = c.Find(bson.M{"parentid":j}).One(&u)	
-		fmt.Println(i)	
-	
 		if err != nil{
 			u._id = bson.NewObjectId()
 			err = c.Insert(&u)
@@ -57,8 +52,6 @@ func getAllUsersofParent(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
 
 		err := req.ParseForm()	
-		var user User
-		_ = json.NewDecoder(req.Body).Decode(&user)
 		
 		database := Database{"localhost", "cmpe281", nil}
 		data := &database
@@ -67,8 +60,7 @@ func getAllUsersofParent(formatter *render.Render) http.HandlerFunc{
 
 		var u UserDetails
 		var ust []UserDetails
-		//u.UID = req.FormValue("uid")
-		u.PARENTID = req.FormValue("parentid")		
+		u.UID = req.FormValue("uid")
 		err = c.Find(bson.M{"parentid":u.UID}).All(&ust)
 		
 		if err != nil {
@@ -77,7 +69,6 @@ func getAllUsersofParent(formatter *render.Render) http.HandlerFunc{
 		formatter.JSON(w, http.StatusOK, ust)
 	}
 }
-
 
 
 func postUserInfo(formatter *render.Render) http.HandlerFunc{
