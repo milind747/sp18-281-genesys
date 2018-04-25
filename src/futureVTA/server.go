@@ -1,16 +1,13 @@
 package main
 
 import (
-	"database/sql"
-	"encoding/json"
 	"fmt"
 	"github.com/codegangsta/negroni"
 	
 	"github.com/gorilla/mux"
-	"github.com/satori/go.uuid"
 	"github.com/unrolled/render"
 	"log"
-	"net/http"
+	
 )
 
 
@@ -31,7 +28,7 @@ func NewServer() *negroni.Negroni {
 // API Routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/generate",generateQRCode(formatter)).Methods("GET")
-	mx.HandleFunc("/scanned", postScannedQRCode Detail(formatter)).Methods("POST")
+	mx.HandleFunc("/scanned", addQRCodeUseDetail(formatter)).Methods("POST")
 	mx.HandleFunc("/newParent",newParent(formatter)).Methods("POST")
 	mx.HandleFunc("/getPAmount",readBal(formatter)).Methods("GET")
 	mx.HandleFunc("/updatePAmount",updateBal(formatter)).Methods("POST")
@@ -46,6 +43,7 @@ func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/getusers", getAllUsersofParent(formatter)).Methods("GET")
 	mx.HandleFunc("/postuserinfo", postUserInfo(formatter)).Methods("POST")
 	mx.HandleFunc("/updateuserinfo", postUpdateInfo(formatter)).Methods("POST")
+	mx.HandleFunc("/getQrCodeHistory",getQRCodeUseHistory(formatter)).Methods("GET")
 }
 
 // Helper Functions

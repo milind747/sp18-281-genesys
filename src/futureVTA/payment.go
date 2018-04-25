@@ -16,8 +16,8 @@ import (
 
 type Payment struct {
 	_id bson.ObjectId `bson:"_id" json:"_id"`
-	id int `bson:"id" json:"id"`
-	amount int  `bson:"amount" json:"amount"`
+	ID int `bson:"id" json:"id"`
+	AMOUNT int  `bson:"amount" json:"amount"`
 }
 
 type History struct {
@@ -175,9 +175,9 @@ func addBal(formatter *render.Render) http.HandlerFunc{
 	} else {
 		fmt.Println("Nothing added")
 		formatter.JSON(w, http.StatusOK, false)
-	}
-	
-	}
+}
+}	
+}
 }
 
 //function to get user transaction history
@@ -185,7 +185,7 @@ func userHistory(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
 
 	req.ParseForm()
-	var user User
+	var user User	
 	_ = json.NewDecoder(req.Body).Decode(&user)
 	database := Database{"localhost", "cmpe281", nil}
 	data := &database
@@ -201,7 +201,6 @@ func userHistory(formatter *render.Render) http.HandlerFunc{
         } else {
 		fmt.Println("History found!")
 		formatter.JSON(w, http.StatusOK, p)
-	}
-
-	}
+}
+}
 }
