@@ -90,7 +90,15 @@ func postUserInfo(formatter *render.Render) http.HandlerFunc{
 		u.PHONE = req.FormValue("phone")
 		u.EMAIL = req.FormValue("email")
 	
-
+		err = c.Find(bson.M{"uid":u.UID}).One(&u)
+		
+		if err != nil {
+			log.Fatal("ERRRORR")
+		        log.Fatal(err)
+		}
+	
+		
+		fmt.Println("User Data inserted")
 		
 		fmt.Println("data inserted")
 		formatter.JSON(w, http.StatusOK, ins)
