@@ -57,6 +57,12 @@
 
 	</head>
 	<body>
+    <div class="alert alert__success"><%= JSON.stringify(data) %></div>
+    <% var user = data %>
+	<script>
+        user = <%- JSON.stringify(user) %>
+		localStorage.setItem("user_details", JSON.stringify({'user': user}))
+	</script>
 		
 	<div class="colorlib-loader"></div>
 
@@ -85,6 +91,8 @@
 								<li><a href="blog.html">Blog</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="contact.html">Contact</a></li>
+								<li><a id="logout"><p>logout</p></a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -318,6 +326,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         $("#texiservice").click(function(event){
             window.location = "/texiservice?No="+"0";
 		});
+        $("#logout").click(function(event){
+            window.location = "/?No=1";
+            localStorage.removeItem("user_details");
+        });
 		</script>
 	</body>
 </html>
