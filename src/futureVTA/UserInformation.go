@@ -73,6 +73,29 @@ func getAllUsersofParent(formatter *render.Render) http.HandlerFunc{
 
 func postUserInfo(formatter *render.Render) http.HandlerFunc{
 		return func(w http.ResponseWriter, req *http.Request) {
+		
+		req.ParseForm()
+		
+		database := Database{"localhost", "cmpe281", nil}
+		data := &database
+		Connect(data)
+		c := data.db.C("users")
+
+		var u UserDetails
+		
+		u._id = bson.NewObjectId()
+		u.UID = req.FormValue("uid")
+		u.USERNAME = req.FormValue("username")		
+		u.PARENTID = req.FormValue("parentid")
+		u.PHONE = req.FormValue("phone")
+		u.EMAIL = req.FormValue("email")
+	
+
+		
+		fmt.Println("data inserted")
+		formatter.JSON(w, http.StatusOK, ins)
+		
+		
 			
 	}
 }
