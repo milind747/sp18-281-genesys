@@ -89,21 +89,22 @@ func postUserInfo(formatter *render.Render) http.HandlerFunc{
 		u.PARENTID = req.FormValue("parentid")
 		u.PHONE = req.FormValue("phone")
 		u.EMAIL = req.FormValue("email")
-	
-		err = c.Find(bson.M{"uid":u.UID}).One(&u)
+		/*err = c.Find(bson.M{"uid":u.UID}).One(&u)
 		
 		if err != nil {
 			log.Fatal("ERRRORR")
 		        log.Fatal(err)
 		}
-	
-		
-		fmt.Println("User Data inserted")
-		
+	*/
+		ins := UserDetails{u._id, u.UID, u.USERNAME, u.PARENTID, u.PHONE, u.EMAIL}
+		err := c.Insert(ins)
+
+		//fmt.Println("User Data inserted")	
+		if err != nil {
+			log.Fatal(err)
+		}
 		fmt.Println("data inserted")
 		formatter.JSON(w, http.StatusOK, ins)
-		
-		
 			
 	}
 }
