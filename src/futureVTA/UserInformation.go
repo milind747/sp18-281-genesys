@@ -123,6 +123,25 @@ func postUpdateInfo(formatter *render.Render) http.HandlerFunc{
 
 		var u UserDetails
 
+		u._id = bson.NewObjectId()
+		u.UID = req.FormValue("uid")
+		u.USERNAME = req.FormValue("username")		
+		u.PARENTID = req.FormValue("parentid")
+		u.PHONE = req.FormValue("phone")
+		u.EMAIL = req.FormValue("email")
+
+		/*getid := bson.M{"uid": u.UID}
+		change := bson.M{"$set": bson.M{"username": u.USERNAME, "phone": u.PHONE, "email": u.EMAIL}}
+		err := c.Update(getid, change)
+		*/
+		//fmt.Println("User Data inserted")			
+		
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("data updated")
+		formatter.JSON(w, http.StatusOK, change)
+
 	}
 }
 
