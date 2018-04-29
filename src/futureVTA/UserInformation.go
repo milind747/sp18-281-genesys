@@ -106,7 +106,9 @@ func postUpdateInfo(formatter *render.Render) http.HandlerFunc{
 		return func(w http.ResponseWriter, req *http.Request) {
 		
 		req.ParseForm()
-		
+		//var user User
+		//_ = json.NewDecoder(req.Body).Decode(&user)
+
 		database := Database{"localhost", "cmpe281", nil}
 		data := &database
 		Connect(data)
@@ -120,12 +122,16 @@ func postUpdateInfo(formatter *render.Render) http.HandlerFunc{
 		u.PARENTID = req.FormValue("parentid")
 		u.PHONE = req.FormValue("phone")
 		u.EMAIL = req.FormValue("email")
+
+		getid := bson.M{"uid": u.UID}
+		change := bson.M{"$set": bson.M{"username": u.USERNAME, "phone": u.PHONE, "email": u.EMAIL}}
+		err := c.Update(getid, change)
+		
 		if err != nil {
 			log.Fatal(err)
 		}
 		fmt.Println("data updated")
 		formatter.JSON(w, http.StatusOK, change)
-
 	}
 }
 
