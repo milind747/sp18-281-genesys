@@ -67,9 +67,28 @@ This week we decided to work on the GO API and Data services part.
 
 ## Key Tasks: 
 Develope the Node application and integrate with the GO API. 
+
+## Meeting location:
+Engineering building
+
 ## Challanges: 
     * Develop the Node application.
     * Decide the npm packages for Network requests to be used for Node Application.
     * Check the feasibility on Heroku.
     * Integrate the Node application with the GO API.
     * Test the end to end flow
+
+# Week 5 :
+
+## Key Tasks: 
+Integration with all member's Microservices and work on UI.
+
+## Meeting location:
+Engineering building
+
+## Challanges: 
+    * Integrate all the APIs developed by the team members.
+    * Work on the material design part.
+    * Deploy the application on Heroku.
+    * Test the end to end flow.
+    * Work on the diagrams and check the application against the decided funcationality.
