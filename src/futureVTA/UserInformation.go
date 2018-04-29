@@ -1,13 +1,13 @@
 package main
 
 import (
-	"encoding/json"
+	//"encoding/json"
 	"net/http"
 	"log"
 	"fmt"
 	"github.com/unrolled/render"
 	"gopkg.in/mgo.v2/bson"
-	"strconv"
+	//"strconv"
 	)
 
 
@@ -19,7 +19,6 @@ type UserDetails struct {
 	PHONE		string		`bson:"phone" json:"phone"`
 	EMAIL		string		`bson:"email" json:"email"`
 }
-
 
 func getUserInfo(formatter *render.Render) http.HandlerFunc{
 	return func(w http.ResponseWriter, req *http.Request) {
@@ -61,6 +60,7 @@ func getAllUsersofParent(formatter *render.Render) http.HandlerFunc{
 		var u UserDetails
 		var ust []UserDetails
 		u.UID = req.FormValue("uid")
+		
 		err = c.Find(bson.M{"parentid":u.UID}).All(&ust)
 		
 		if err != nil {
@@ -70,10 +70,9 @@ func getAllUsersofParent(formatter *render.Render) http.HandlerFunc{
 	}
 }
 
-
 func postUserInfo(formatter *render.Render) http.HandlerFunc{
 		return func(w http.ResponseWriter, req *http.Request) {
-		
+	
 		req.ParseForm()
 		
 		database := Database{"localhost", "cmpe281", nil}
@@ -98,15 +97,18 @@ func postUserInfo(formatter *render.Render) http.HandlerFunc{
 		}
 		fmt.Println("data inserted")
 		formatter.JSON(w, http.StatusOK, ins)
-			
+		
+		
 	}
 }
 
 func postUpdateInfo(formatter *render.Render) http.HandlerFunc{
 		return func(w http.ResponseWriter, req *http.Request) {
-		
+
 		req.ParseForm()
-		
+		//var user User
+		//_ = json.NewDecoder(req.Body).Decode(&user)
+
 		database := Database{"localhost", "cmpe281", nil}
 		data := &database
 		Connect(data)
@@ -130,6 +132,6 @@ func postUpdateInfo(formatter *render.Render) http.HandlerFunc{
 		}
 		fmt.Println("data updated")
 		formatter.JSON(w, http.StatusOK, change)
+	
 	}
 }
-
