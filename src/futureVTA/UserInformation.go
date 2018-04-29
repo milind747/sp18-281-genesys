@@ -1,13 +1,13 @@
 package main
 
 import (
-	//"encoding/json"
+	"encoding/json"
 	"net/http"
 	"log"
 	"fmt"
 	"github.com/unrolled/render"
 	"gopkg.in/mgo.v2/bson"
-	//"strconv"
+	"strconv"
 	)
 
 
@@ -106,9 +106,7 @@ func postUpdateInfo(formatter *render.Render) http.HandlerFunc{
 		return func(w http.ResponseWriter, req *http.Request) {
 		
 		req.ParseForm()
-		//var user User
-		//_ = json.NewDecoder(req.Body).Decode(&user)
-
+		
 		database := Database{"localhost", "cmpe281", nil}
 		data := &database
 		Connect(data)
