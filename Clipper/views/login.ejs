@@ -132,54 +132,76 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 animate-box">
-                
-                    <form id="userdetails_form" method="post" action="user_info">
-                        <h3>User Details</h3>
+                    <%if (data == "1") { %>
+                   <form id="login_form" method="post" action="login_check">
+                    <h3>Login into the clipper</h3>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="fname">User Id</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Your username">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="lname">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Your password">
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center" >
+                        <input type="submit" value="Login" class="btn btn-primary" id ="login_view">
+                    </div>
+
+                       <div class="form-group text-center" >
+                           <input type="button" value="Sign Up" class="btn btn-primary" id ="signup_page">
+                       </div>
+
+                   </form>
+                    <% } %>
+
+                    <%if (data == "2") { %>
+                    <form id="signup_form" method="post" action="signup_check">
+                        <h3>Login into the clipper</h3>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label for="fname">Username</label>
+                                <label for="fname">User Id- signup</label>
                                 <input type="text" id="username" name="username" class="form-control" placeholder="Your username">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label for="fname">Phone</label>
-                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone">
+                                <label for="lname">Password</label>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Your password">
                             </div>
                         </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label for="fname">Email</label>
-                                <input type="text" id="email" name="email" class="form-control" placeholder="Your Email">
-                            </div>
-                    </div>
+                        <div class="form-group text-center" >
+                            <input type="submit" value="Sign Up" class="btn btn-primary" id ="signup_view">
+                        </div>
 
                         <div class="form-group text-center" >
-                            <input type="submit" value="Submit" class="btn btn-primary" id ="login_view">
+                            <input type="button" value="Login" class="btn btn-primary" id ="go_login">
                         </div>
 
                     </form>
-                
-
-                <form id="addchild_form" method="post" action="child_add">
-                    <h3>Add child</h3>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label for="fname">Add child with email ID</label>
-                            <input type="text" id="childemail" name="childemail" class="form-control" placeholder="Enter email">
-                        </div>
+                    <% } %>
+                    <%if (data == "3") { %>
+                        <div class="alert alert__success"><%= "Invalid login" %></div>
+                        <div class="form-group text-center" >
+                            <input type="button" value="Back to Login" class="btn btn-primary" id ="login_false">
                     </div>
-
+                    <% } %>
+                    <%if (data == "4") { %>
+                    <div class="alert alert__success"><%= "user already exists" %></div>
                     <div class="form-group text-center" >
-                        <input type="submit" value="Add" class="btn btn-primary" id ="login_view">
+                        <input type="button" value="Back to Signup" class="btn btn-primary" id ="signup_false">
                     </div>
-
-                </form>
-            </div>
+                    <% } %>
+                </div>
 
             </div>
         </div>
@@ -216,7 +238,7 @@
     <!-- Main -->
     <script src="js/main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!--
+
     <script>
 
 
@@ -227,27 +249,29 @@
            window.location = "/login_check?No="+"2&userid="+document.getElementById('username').value+"&password="+document.getElementById('password').value;
         });
 
-        $("#get_the_details").click(function(event){
-            //console.log("jay desai");
-            //console.log("/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value);
-
-            window.location = "/texiservice?No="+"2&direct="+"T";
-        });
-
-        $("#ride_now").click(function(event){
-            window.location = "/texiservice?No="+"3";
-        });
-
-
-        $("#ride_inc").click(function(event){
-            window.location = "/texiservice?No="+"3&data_int=3_D";
-        });
 
         $("#signup_page").click(function(event){
             window.location = "/?No=2";
         });
 
+        $("#login_false").click(function(event){
+            window.location = "/?No=1";
+        });
+
+        $("#login_false").click(function(event){
+            window.location = "/?No=2";
+        });
+
+        $("#go_login").click(function(event){
+            window.location = "/?No=1";
+        });
+
+        $("#signup_false").click(function(event){
+            window.location = "/?No=2";
+        });
+
     </script>
--->
+
 </body>
 </html>
+

@@ -17,108 +17,57 @@ router.get('/', function(req, res) {
   
     });
 });
-/*
-else if(req.query.No == "2"){
+//your api
+router.post('/', function(req, res) {
+    console.log("Inside the port of uber service");
 
-    // API Call for the get user info 
-    console.log("req.query.userid:"+req.query.userid)
-    console.log("req.query.clippercard:"+req.query.clippercard)
-    console.log("req.query.username:"+req.query.username)
-    console.log("req.query.password:"+req.query.password)
-    
-    if (req.query.direct != "T"){
+
+    // API Call for the get user info
+    console.log("req.query.username:"+req.body.username)
+    console.log("req.query.password:"+req.body.password)
+
     var user_details = {
-        "Id": 11,
-        "Accounts":{
-                "Type": "Uber",
-                "Username": req.query.username,
-                "Clippercarnumber": parseInt(req.query.clippercard),
-                "Password": req.query.password,
-                "Payment": 0,
-                "Noofrides":0
-        }
+        "username": req.body.username,
+        "phone": req.body.phone,
+        "email":req.body.email
+
+        
     }
 
-    axios.post('http://localhost:3001/updateUserData',user_details)
+
+    axios.post('http://localhost:3000/postuserinfo',user_details)
         .then(function(response){
-            console.log("User Data Updated")
+            console.log("response.data" , response)
+            console.log("typeof response.data ",typeof response.data)
+            
+            console.log("condition",response.data=='false\nnull\n')
+            
+                console.log("invalid login")
+                ejs.renderFile('./views/updateinfo.ejs',{data:"3"},function(err,result){
+                    console.log(err)
+                    if (!err) {
+                        res.end(result);
+                    }
 
-            var payload = {
-                "Id": 11,
-                "Accountstype":"Uber",
-                "Clippercarnumber":parseInt(req.query.clippercard)
+                });
+                console.log("successful login")
+                localStorage.setItem("user_details",user_logged_in)
+                console.log(" local storage data ",JSON.stringify(localStorage.getItem("user_details")))
+                console.log(" ")
+                console.log("logged in")
+
+                ejs.renderFile('./views/updateinfo.ejs',function(err,result){
+                    console.log("error ",err)
+                    if (!err) {
+                        res.status(200).send(result);
+                    }
+
+                })
             }
-            axios.post('http://localhost:3001/getUserData',payload)
-                .then(function(response){
-                    console.log("response.data"+response.data)
-                    ejs.renderFile('./views/contact.ejs',{data:req.query.No,details:response.data},function(err,result){
-                    if (!err) {
-                            res.status(200).send(result);
-                            }
-            
-          });
-        
-        })
-            })
+        );
 
-        }
 
-        else{
-            var payload = {
-                "Id": 11,
-                "Accountstype":"Uber",
-                "Clippercarnumber":parseInt(178)
-            }
-            axios.post('http://localhost:3001/getUserData',payload)
-                .then(function(response){
-                    console.log("response.data"+response.data)
-                    ejs.renderFile('./views/contact.ejs',{data:req.query.No,details:response.data},function(err,result){
-                    if (!err) {
-                            res.status(200).send(result);
-                            }
-            
-          });
-        
-        })
-
-        }
-
-    
-  }
-
-    else if(req.query.No == "3" && req.query.data_int=="3_D"){
-        console.log("Inside 3_D")
-    var payload = {
-        "Id": 11,
-        "Accountstype":"Uber",
-        "Payment":parseInt(101)
-    }
-
-    axios.post('http://localhost:3001/updateRides',payload)
-                .then(function(response){
-                    console.log("response.data"+response.data)
-                    ejs.renderFile('./views/contact.ejs',{data:req.query.No,data_int:req.query.data_int},function(err,result){
-                    if (!err) {
-                            res.status(200).send(result);
-                            }
-            
-          });
-        
-        })
-  }
-
-  else if(req.query.No == "3" ){
-    ejs.renderFile('./views/contact.ejs',{data:req.query.No},function(err,result){
-      if (!err) {
-       
-          res.status(200).send(result);
-      }
-    
-  });
-  }
 });
-*/
+
 module.exports = router;
 
-
-//window.location = "/texiservice?No="+"2&userid="+document.getElementById('userid').value+"&clippercard="+document.getElementById('clippercard').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value;
