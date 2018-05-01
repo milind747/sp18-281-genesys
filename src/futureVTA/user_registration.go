@@ -157,7 +157,9 @@ func read(formatter *render.Render) http.HandlerFunc {
                 aLogger = log.New(os.Stderr, "", log.LstdFlags)
                 mgo.SetLogger(aLogger)
 
-       
+        if err != nil {
+                panic(err)
+        }
                 defer session.Close()
 
 	//        var result bson.M
