@@ -146,3 +146,29 @@ func changepwd(formatter *render.Render) http.HandlerFunc{
                 fmt.Println("Response",result)
                 formatter.JSON(w, http.StatusOK, result)
         }
+
+// Read API
+func read(formatter *render.Render) http.HandlerFunc {
+        return func(w http.ResponseWriter, req *http.Request) {         
+                session, collection, err := getMongoConnection()
+                mgo.SetDebug(true)
+
+                var aLogger *log.Logger
+                aLogger = log.New(os.Stderr, "", log.LstdFlags)
+                mgo.SetLogger(aLogger)
+
+       
+                defer session.Close()
+
+	//        var result bson.M
+				var result []*bson.M
+				err = collection.Find(bson.M{}).All(&result)
+
+                if err != nil {
+                                fmt.Println("Inside read error")
+                log.Fatal(err)
+        }
+        fmt.Println("Result Found!", result )
+                formatter.JSON(w, http.StatusOK, result)
+        }
+}
