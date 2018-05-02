@@ -162,10 +162,11 @@ func read(formatter *render.Render) http.HandlerFunc {
         }
                 defer session.Close()
 
-	//        var result bson.M
-				var result []*bson.M
-				err = collection.Find(bson.M{}).All(&result)
-
+//        var result bson.M
+var result []*bson.M
+//      err = collection.Find(bson.M{"username": "neha"}).One(&result)
+        err = collection.Find(bson.M{}).All(&result)
+//      err = collection.Find(nil).All(&result)
                 if err != nil {
                                 fmt.Println("Inside read error")
                 log.Fatal(err)
