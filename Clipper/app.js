@@ -28,6 +28,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/texiservice', texiservice)
 app.use('/updateinfo', updateinfo);
+app.use('/user_info', updateinfo);
+
 
 
 /// catch 404 and forwarding to error handler

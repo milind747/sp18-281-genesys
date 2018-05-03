@@ -23,8 +23,8 @@ router.post('/', function(req, res) {
 
 
     // API Call for the get user info
-    console.log("req.query.username:"+req.body.username)
-    console.log("req.query.password:"+req.body.password)
+    //console.log("req.query.username:"+req.body.username)
+    //console.log("req.query.password:"+req.body.password)
 
     var user_details = {
         "username": req.body.username,
