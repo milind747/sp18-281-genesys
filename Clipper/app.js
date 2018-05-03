@@ -10,6 +10,9 @@ var users = require('./routes/users');
 var texiservice = require('./routes/texiservice');
 var updateinfo = require('./routes/updateinfo');
 var addBalance=require('./routes/addBalance');
+var login_check = require('./routes/loginservice')
+var signup_check = require('./routes/signupservice')
+
 var app = express();
 
 // view engine setup
@@ -30,6 +33,8 @@ app.use('/texiservice', texiservice)
 app.use('/updateinfo', updateinfo);
 app.use('/addBalance',addBalance);
 app.use('/user_info', updateinfo);
+app.use('/login_check', login_check);
+app.use('/signup_check', signup_check)
 
 
 
