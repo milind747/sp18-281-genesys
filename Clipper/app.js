@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var texiservice = require('./routes/texiservice');
 var updateinfo = require('./routes/updateinfo');
-
+var addBalance=require('./routes/addBalance');
 var app = express();
 
 // view engine setup
@@ -28,6 +28,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/texiservice', texiservice)
 app.use('/updateinfo', updateinfo);
+app.use('/addBalance',addBalance);
 
 
 /// catch 404 and forwarding to error handler
