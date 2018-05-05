@@ -13,8 +13,6 @@ type Database struct {
 	db *mgo.Database
 }
 
-//database object to be returned
-var db *mgo.Database
 
 func Connect(m *Database) {
 	session, err := mgo.Dial(m.host)
