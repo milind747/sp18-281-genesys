@@ -6,7 +6,14 @@ var router = express.Router();
 router.get('/', function(req, res) {
     console.log("Neha")
     var data=req.query.No;
-    
+    if (!req.query.No)
+    {
+        data="1"
+    }
+    else
+    {
+        data=req.query.No;
+    }
     console.log("data:", data)
     ejs.renderFile('./views/login.ejs',{data:data},function(err,result){
         console.log(err)
