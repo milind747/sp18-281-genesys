@@ -28,7 +28,12 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/texiservice', texiservice)
 app.use('/updateinfo', updateinfo);
+<<<<<<< HEAD
 app.use('/addBalance',addBalance);
+=======
+app.use('/user_info', updateinfo);
+
+>>>>>>> 2ebda045b618ed981522a730c1645056ff1371e7
 
 
 /// catch 404 and forwarding to error handler
